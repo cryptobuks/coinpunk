@@ -42,8 +42,7 @@
       <div class="form-group">
         <label for="amount" class="col-lg-5 control-label">Amount</label>
         <div class="col-lg-5">
-          <input id="amount" type="text" name="amount" class="form-control" autocomplete="off" placeholder="0.00" style="display: inline; width: 100px" oninput="coinpunk.controllers.tx.sendExchangeUpdate()" onchange="coinpunk.controllers.tx.calculateFee()"> ABY <span style="padding-left: 30px"> ≈ 
-          <input id="amountExchange" type="text" name="amountExchange" class="form-control" autocomplete="off" placeholder="0.00" style="display: inline; width: 100px" oninput="coinpunk.controllers.tx.sendBTCUpdate()"> <%- coinpunk.pricing.getCurrency() %>
+          <input id="amount" type="text" name="amount" class="form-control" autocomplete="off" placeholder="0.00" style="display: inline; width: 100px" oninput="coinpunk.controllers.tx.sendExchangeUpdate()" onchange="coinpunk.controllers.tx.calculateFee()"> ABY 
         </div>
       </div>
       
@@ -59,7 +58,7 @@
       <div class="form-group">
         <label for="submit" class="col-lg-5 control-label hidden-sm hidden-xs"></label>
         <div class="col-lg-2 text-center">
-          <button id="sendButton" type="submit" class="btn btn-default btn-lg btn-primary" class="form-control"><i class="fa fa-bitcoin"></i> Send</button>
+          <button id="sendButton" type="submit" class="btn btn-default btn-lg btn-primary" class="form-control"><i class="fa"></i> Send</button>
         </div>
       </div>
     </form>
