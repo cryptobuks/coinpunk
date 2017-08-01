@@ -220,10 +220,14 @@ coinpunk.Wallet = function(walletKey, walletId) {
   this.getUnspent = function(confirmations) {
     var confirmations = confirmations || 0;
     var unspent = [];
-
-    for(var i=0; i<this.unspent.length; i++)
-      if(this.unspentConfirmations[this.unspent[i].hash] >= confirmations)
-        unspent.push(this.unspent[i]);
+    console.log("this.unspent.length %d",this.unspent.length);
+    for(var i=0; i<this.unspent.length; i++) {
+      if (typeof this.unspent[i].scriptPubKey != 'undefined') {
+	console.log("this.getUnspent unspent[i].scriptPubKey: %s", this.unspent[i].scriptPubKey);
+        if(this.unspentConfirmations[this.unspent[i].hash] >= confirmations)
+          unspent.push(this.unspent[i]);
+      }
+    }
     return unspent;
   };
 
@@ -253,6 +257,7 @@ coinpunk.Wallet = function(walletKey, walletId) {
     var changeAddresses = this.changeAddressHashes();
     var safeUnspent = [];
     for(var u=0;u<unspent.length;u++) {
+	console.log("this.safeUnspent unspent[i].scriptPubKey: %s", unspent[u].scriptPubKey);
       if(_.contains(changeAddresses, unspent[u].address) == true || this.unspentConfirmations[unspent[u].hash] >= this.minimumConfirmations)
         safeUnspent.push(unspent[u]);
     }
@@ -334,8 +339,9 @@ coinpunk.Wallet = function(walletKey, walletId) {
     var hashType = 1; // SIGHASH_ALL
 
     // Here will be the beginning of your signing for loop
-
+    console.log("unspent.length: %d", unspent.length);  
     for(i=0;i<unspent.length;i++) {
+      console.log("scriptPubKey: %s", unspent[i].scriptPubKey);
       var unspentOutScript = new Bitcoin.Script(Bitcoin.convert.hexToBytes(unspent[i].scriptPubKey));
       var hash = sendTx.hashTransactionForSignature(unspentOutScript, i, hashType);
       var pubKeyHash = unspentOutScript.simpleOutHash();
