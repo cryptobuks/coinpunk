@@ -13,8 +13,7 @@ coinpunk.Template = {
     'header',
     'node_error',
     'signin',
-    'signup',
-    'buy'
+    'signup'
   ],
  
   templateCache: {},

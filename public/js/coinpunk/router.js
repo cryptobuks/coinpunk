@@ -171,14 +171,6 @@ coinpunk.router.map('#/addresses/request/:address').to(function() {
   });
 });
 
-coinpunk.router.map('#/buy').to(function() {
-  coinpunk.router.initWallet(function(res) {
-    if(res == false)
-      return;
-    coinpunk.router.render('view', 'buy');
-  });
-});
-
 coinpunk.router.map('#/').to(function() {
 /*
   if(window.navigator.registerProtocolHandler)
@@ -191,7 +183,7 @@ coinpunk.router.map('#/').to(function() {
   coinpunk.router.initWallet(function(res) {
     if(res == false)
       return;
-    coinpunk.route('dashboard');
+    coinpunk.router.route('dashboard');
   });
 });
 
