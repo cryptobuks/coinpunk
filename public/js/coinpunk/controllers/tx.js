@@ -100,7 +100,7 @@ coinpunk.controllers.Tx.prototype.create = function() {
     try {
       new Bitcoin.Address(address, coinpunk.config.network);
     } catch (e) {
-      errors.push('The provided AppleByte address is not valid.');
+      errors.push('The provided ArtByte address is not valid.');
     }
   }
 
@@ -108,7 +108,7 @@ coinpunk.controllers.Tx.prototype.create = function() {
 
   for(var i=0; i<myAddresses.length;i++) {
     if(myAddresses[i].address == address)
-      errors.push('You cannot send to your own AppleByte wallet.');
+      errors.push('You cannot send to your own ArtByte (formerly AppleByte) wallet.');
   }
 
   if(amount == '' || parseFloat(amount) == 0) {
@@ -116,7 +116,7 @@ coinpunk.controllers.Tx.prototype.create = function() {
   } else if(/^[0-9]+$|^[0-9]+\.[0-9]+$|^\.[0-9]+$/.exec(amount) === null) {
     errors.push('You must have a valid amount to send.');
   } else if(coinpunk.wallet.safeUnspentBalance().lessThan(new BigNumber(amount).plus(calculatedFee))) {
-    errors.push('Cannot spend more AppleBytes than you currently have.');
+    errors.push('Cannot spend more ArtByte (formerly AppleByte)  than you currently have.');
   }
 
   if(errors.length > 0) {
@@ -231,11 +231,11 @@ coinpunk.controllers.Tx.prototype.scanQR = function(event) {
     }
 
     if(uri.protocol() != 'applebyte')
-      return errorsDiv.removeClass('hidden').text('Not a valid AppleByte QR code.');
+      return errorsDiv.removeClass('hidden').text('Not a valid ArtByte (formerly AppleByte) QR code.');
     
     var address = uri.path();
     if(!address || address == '')
-      return errorsDiv.removeClass('hidden').text('No AppleByte address found in QR code.');
+      return errorsDiv.removeClass('hidden').text('No ArtByte (formerly AppleByte) address found in QR code.');
 
     $('#address').val(address);
     
