@@ -243,7 +243,6 @@ coinpunk.controllers.Tx.prototype.scanQR = function(event) {
     
     if(queryHash.amount) {
       $('#amount').val(queryHash.amount);
-      coinpunk.controllers.tx.sendExchangeUpdate();
       coinpunk.controllers.tx.calculateFee();
     }
   }
